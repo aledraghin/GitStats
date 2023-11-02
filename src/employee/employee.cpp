@@ -18,7 +18,6 @@ Employee::Employee(const Employee &employee) {
     this->name = employee.name;
     this->salary = employee.salary;  
     this->idNumber = employee.idNumber; 
-    // this->manager = new Manager(*(employee.manager));
 
     if (employee.manager) {
         manager = new Manager(*employee.manager);

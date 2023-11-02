@@ -9,7 +9,7 @@ class Employee{
         long idNumber;
         Manager *manager;
     public:
-        Employee(string name, double salary, long idNumber, string companyName);
+        Employee(string name, double salary, long idNumber, string comanyName);
         ~Employee();
         Employee(const Employee &employee);
         Employee& operator=(const Employee& other);

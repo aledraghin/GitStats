@@ -5,79 +5,75 @@
 #include "manager.hpp" 
 using namespace std;
 
-void displayEmployees(std::vector<Employee>& employee) {
-    std::cout << "Employee List:" << std::endl;
+void displayEmployees(vector<Employee>& employee) {
+cout << "Employee List:" << endl;
     for (size_t i = 0; i < employee.size(); i++) {
-        std::cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getCompanyName() << std::endl;
+        cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getCompanyName() << endl;
     }
 }
 
-void displayManagers( std::vector<Manager>& manager) {
-    std::cout << "Manager List:" << std::endl;
+void displayManagers( vector<Manager>& manager) {
+    cout << "Manager List:" << endl;
     for (size_t i = 0; i < manager.size(); i++) {
-        std::cout << "Manager " << i << ": " << manager[i].getCompanyName() << std::endl;
+    cout << "Manager " << i << ": " << manager[i].getCompanyName() << endl;
     }
 }
 
 int main() {
+
     int option;
-    std::vector<Employee> employees;
-    std::vector<Manager> managers;
+    vector<Employee> employees;
+    vector<Manager> managers;
 
     do {
-        std::cout << "-------------------------------------------" << std::endl;
-        std::cout << "Please choose an option: " << std::endl;
-        std::cout << "1. Add a new Employee" << std::endl;
-        std::cout << "2. Add a new Manager" << std::endl;
-        std::cout << "3. Display all Employees" << std::endl;
-        std::cout << "4. Display all Managers" << std::endl;
-        std::cout << "5. Copy an Employee" << std::endl;
-        std::cout << "0. Exit" << std::endl;
-        std::cout << "-------------------------------------------" << std::endl;
-        std::cin >> option;
+        cout << "-------------------------------------------" << endl;
+        cout << "Please choose an option: " << endl;
+        cout << "1. Add a new Employee" << endl;
+        cout << "2. Add a new Manager" << endl;
+        cout << "3. Display all Employees" << endl;
+        cout << "4. Display all Managers" << endl;
+        cout << "5. Copy an Employee" << endl;
+        cout << "0. Exit" << endl;
+        cout << "-------------------------------------------" << endl;
+        cin >> option;
 
         switch (option) {
             case 1: {
-                std::cout << "Add a new Employee" << std::endl;
-                std::string name;
+                cout << "New employee" << endl;
+                string name;
                 double salary;
                 long idNumber;
 
-                std::cout << "Name: ";
-                std::cin >> name;
-                std::cout << "Salary: ";
-                std::cin >> salary;
-                std::cout << "ID Number: ";
-                std::cin >> idNumber;
+                cout << "Name: ";
+                cin >> name;
+                cout << "Salary: ";
+                cin >> salary;
+                cout << "ID Number: ";
+                cin >> idNumber;
 
-                if (managers.empty()) {
-                    std::cout << "No managers available. Please add a manager first." << std::endl;
-                    break;
-                }
-
-                std::cout << "Select a Manager (enter the Manager index):" << std::endl;
+                cout << "Select the Manager index:" << endl;
                 displayManagers(managers);
 
                 int managerIndex;
-                std::cin >> managerIndex;
+                cin >> managerIndex;
 
                 if (managerIndex < 0 || managerIndex >= managers.size()) {
-                    std::cout << "Invalid Manager index." << std::endl;
+                    cout << "Invalid index" << endl;
                 } else {
                     Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
                     employees.push_back(employee);
-                    std::cout << "Employee added successfully." << std::endl;
+                    cout << "Employee added " << endl;
                 }
             }
             break;
 
             case 2: {
-                std::cout << "Add a new Manager" << std::endl;
-                std::string name;
-                std::cin >> name;
-                Manager manager(name);
+                cout << "New Manager" << endl;
+                string companyName;
+                cin >> companyName;
+                Manager manager(companyName);
                 managers.push_back(manager);
-                std::cout << "Manager added successfully." << std::endl;
+                cout << "Manager added" << endl;
             }
             break;
 
