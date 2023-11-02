@@ -4,12 +4,11 @@
 using namespace std;
 
 // constructor
-Employee::Employee(string name, double salary, long idNumber){
-    std::cout<<"apelat";
+Employee::Employee(string name, double salary, long idNumber, string companyName){
     this->name = name;
     this->salary = salary;
     this->idNumber = idNumber;
-    this->manager = new Manager(name);
+    this->manager = new Manager(companyName);
 }
 
 // copy constructor -> alegem sa facem deep copy pentru ca alocam dinamic un nou manager
@@ -19,9 +18,8 @@ Employee::Employee(const Employee &employee) {
     this->name = employee.name;
     this->salary = employee.salary;  
     this->idNumber = employee.idNumber; 
-    this->manager = new Manager(*(employee.manager));
+    // this->manager = new Manager(*(employee.manager));
 
-    
     if (employee.manager) {
         manager = new Manager(*employee.manager);
     } else {
@@ -31,27 +29,28 @@ Employee::Employee(const Employee &employee) {
 
 // Assignment operator overloading for deep copy
 Employee& Employee::operator=(const Employee& other) {
+    // daca cele 2 obiecte sunt identice -> returneaza obiectul curent
     if (this == &other) {
-        // Self-assignment, no action needed
         return *this;
     }
 
-    // Copy the data members
+    // copiem campurile din obiectul other in obiectul curent
     this->name = other.name;
     this->salary = other.salary;
     this->idNumber = other.idNumber;
 
-    // Delete the existing manager if it exists
+    // daca managerul curent nu e null -> il stergem
     if (manager) {
         delete manager;
         manager = nullptr;
     }
 
-    // Perform a deep copy of the manager object
+    // facem deep copy pentru manager
     if (other.manager) {
         manager = new Manager(*other.manager);
     }
 
+    // returneaza obiectul curent
     return *this;
 }
 
