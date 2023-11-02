@@ -92,29 +92,9 @@ int main() {
             break;
 
             case 5: {
-                if (employees.empty()) {
-                    std::cout << "There are no employees in the list." << std::endl;
-                    break;
-                }
-
-                std::cout << "Copy an Employee" << std::endl;
-                std::cout << "Enter the index of the source Employee: ";
-                int sourceIndex;
-                std::cin >> sourceIndex;
-                std::cout << "Enter the index of the destination Employee: ";
-                int destIndex;
-                std::cin >> destIndex;
-
-                if (sourceIndex < 0 || sourceIndex >= employees.size() || destIndex < 0 || destIndex >= employees.size()) {
-                    std::cout << "Invalid indices." << std::endl;
-                } else {
-                    Employee sourceEmployee = employees[sourceIndex];
-                    Employee destinationEmployee = sourceEmployee; // Using the assignment operator to copy
-
-                    destinationEmployee.setName(destinationEmployee.getName() + " (Copy)");
-                    employees.push_back(destinationEmployee);
-                    std::cout << "Employee copied successfully." << std::endl;
-                }
+                Manager manager = Manager("CONTI");
+                Manager copyManager = manager;
+                managers.push_back(copyManager);
             }
             break;
 
