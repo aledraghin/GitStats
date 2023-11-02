@@ -4,12 +4,11 @@
 using namespace std;
 
 // constructor
-Employee::Employee(string name, double salary, long idNumber){
-    std::cout<<"apelat";
+Employee::Employee(string name, double salary, long idNumber, string companyName){
     this->name = name;
     this->salary = salary;
     this->idNumber = idNumber;
-    this->manager = new Manager(name);
+    this->manager = new Manager(companyName);
 }
 
 // copy constructor -> alegem sa facem deep copy pentru ca alocam dinamic un nou manager
@@ -19,7 +18,6 @@ Employee::Employee(const Employee &employee) {
     this->name = employee.name;
     this->salary = employee.salary;  
     this->idNumber = employee.idNumber; 
-    this->manager = new Manager(*(employee.manager));
 
     
     if (employee.manager) {
@@ -32,7 +30,6 @@ Employee::Employee(const Employee &employee) {
 // Assignment operator overloading for deep copy
 Employee& Employee::operator=(const Employee& other) {
     if (this == &other) {
-        // Self-assignment, no action needed
         return *this;
     }
 
@@ -52,7 +49,7 @@ Employee& Employee::operator=(const Employee& other) {
         manager = new Manager(*other.manager);
     }
 
-    return *this;
+    return *this; // return current obj
 }
 
 // dealocare de memorie din heap -> Destructor

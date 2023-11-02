@@ -5,11 +5,6 @@
 #include "manager.hpp" 
 using namespace std;
 
-Employee generateEmployee(string name, double salary, long idNumber) {
-    Employee employee(name, salary, idNumber);
-    return employee;
-}
-
 void displayEmployees(vector<Employee>& employee) {
 cout << "Employee List:" << endl;
     for (size_t i = 0; i < employee.size(); i++) {
@@ -65,7 +60,7 @@ int main() {
                 if (managerIndex < 0 || managerIndex >= managers.size()) {
                     cout << "Invalid index" << endl;
                 } else {
-                    Employee employee(name, salary, idNumber);
+                    Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
                     employees.push_back(employee);
                     cout << "Employee added " << endl;
                 }
@@ -107,14 +102,14 @@ int main() {
                 cin >> destIndex;
 
                 if (sourceIndex < 0 || sourceIndex >= employees.size() || destIndex < 0 || destIndex >= employees.size()) {
-                    cout << "Invalid indices" << endl;
+                    cout << "Invalid indices." << endl;
                 } else {
                     Employee sourceEmployee = employees[sourceIndex];
-                    Employee destinationEmployee = sourceEmployee;
+                    Employee destinationEmployee = sourceEmployee; // Using the assignment operator to copy
 
                     destinationEmployee.setName(destinationEmployee.getName() + " (Copy)");
                     employees.push_back(destinationEmployee);
-                    cout << "Employee copied" << endl;
+                    cout << "Employee copied successfully." << endl;
                 }
             }
             break;
@@ -129,5 +124,4 @@ int main() {
         }
     } while (option != 0);
 
-    return 0;
 }
