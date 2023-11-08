@@ -1,13 +1,17 @@
 # incluzi directoarele ce contin cele 2 librarii necesare
+add_subdirectory(human-being)
 add_subdirectory(employee)
 add_subdirectory(manager)
+add_subdirectory(manager_employee)
 
 # aici creem executabilul
 add_executable(Executable main.cpp)
 
 # here we link PlaneLibrary and PilotLibrary to the executable
-target_link_libraries(Executable PRIVATE EmployeeLibrary ManagerLibrary)
+target_link_libraries(Executable PRIVATE EmployeeLibrary ManagerLibrary ManagerEmployeeLibrary HumanBeingLibrary)
 
 # here we include the plane directory and pilot directory so that plane.hpp and pilot.hpp can be found
 target_include_directories(Executable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/employee)
 target_include_directories(Executable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/manager)
+target_include_directories(Executable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/manageremployee)
+target_include_directories(Executable PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/human-being)

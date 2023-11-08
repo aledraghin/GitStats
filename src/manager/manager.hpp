@@ -4,16 +4,18 @@
 #include <string>
 using namespace std;
 
-class Manager{
-    private:
-        string companyName;
-    public:
-        Manager(string companyName);
-        ~Manager();
+namespace company{
+    class Manager{
+        private:
+            string companyName;
+        public:
+            Manager(string companyName);
+            ~Manager();
 
-        string getCompanyName();
+            string getCompanyName();
 
-        void setCompanyName(string companyName);
+            void setCompanyName(string companyName);
 };
+}
 
 #endif
