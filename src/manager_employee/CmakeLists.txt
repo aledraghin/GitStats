@@ -1,0 +1,6 @@
+add_library(ManagerEmployeeLibrary manageremployee.cpp manageremployee.hpp)
+target_include_directories(ManagerEmployeeLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+target_link_libraries(ManagerEmployeeLibrary PUBLIC EmployeeLibrary)
+target_include_directories(ManagerEmployeeLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../employee)

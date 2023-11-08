@@ -3,7 +3,9 @@
 #include <string>
 #include "employee.hpp" 
 #include "manager.hpp" 
+
 using namespace std;
+using namespace company;
 
 void displayEmployees(vector<Employee>& employee) {
 cout << "Employee List:" << endl;
@@ -61,8 +63,12 @@ int main() {
                     cout << "Invalid index" << endl;
                 } else {
                     Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
-                    employees.push_back(employee);
+                    employees.push_back(move(employee));
                     cout << "Employee added " << endl;
+                    employee.eat();
+                    employee.sleep();
+                    employee.work();
+                    employee.repeat();
                 }
             }
             break;
