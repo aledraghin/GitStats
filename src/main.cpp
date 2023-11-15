@@ -2,7 +2,11 @@
 #include <vector>
 #include <string>
 #include "employee.hpp" 
-#include "manager.hpp" 
+#include "manager.hpp"
+#include "janitor.hpp" 
+#include <list>
+#include "corporate.hpp"
+#include "utility.hpp"
 
 using namespace std;
 using namespace company;
@@ -26,6 +30,7 @@ int main() {
     int option;
     vector<Employee> employees;
     vector<Manager> managers;
+    list<Janitor> janitors;
 
     do {
         cout << "-------------------------------------------" << endl;
@@ -35,6 +40,9 @@ int main() {
         cout << "3. Display all Employees" << endl;
         cout << "4. Display all Managers" << endl;
         cout << "5. Copy an Employee" << endl;
+        cout << "6. Example of Janitor class" << endl;
+        cout << "7. Example of Corporate class" << endl;
+        cout << "8. Example of Utility class" << endl;
         cout << "0. Exit" << endl;
         cout << "-------------------------------------------" << endl;
         cin >> option;
@@ -97,6 +105,41 @@ int main() {
                 Manager manager = Manager("CONTI");
                 Manager copyManager = manager;
                 managers.push_back(copyManager); // copy constructor
+            }
+            break;
+
+            case 6: {
+                Janitor janitor = Janitor("CONTI");
+                janitor.eat();
+                janitor.sleep();
+                janitor.work();
+                janitor.repeat();
+                // utilizam o lista pentru ca facem inserarea in fata si are complexitate O(1)
+                janitors.push_front(janitor);
+            }
+
+            case 7: {
+                Corporate<Manager> corporate("CONTI");
+                Manager manager = Manager("CONTI");
+                corporate.addEmployee(manager);
+                corporate.printEmployees();
+
+                Corporate<Janitor> corporate2("CONTI");
+                Janitor janitor = Janitor("CONTI");
+                corporate2.addEmployee(janitor);
+                corporate2.printEmployees();
+            }
+            break;
+
+            case 8:{
+                vector<Employee> employees;
+                employees.push_back(Employee("Andrei", 1000, 1, "CONTI"));
+                employees.push_back(Employee("Mihai", 1000, 1, "CONTI"));
+                findEmployeeByName(employees, "Andrei");
+
+                vector<Manager> managers;
+                managers.push_back(Manager("CONTI"));
+                findEmployeeByName(managers, "CONTI");
             }
             break;
 
