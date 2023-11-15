@@ -63,7 +63,7 @@ int main() {
                     cout << "Invalid index" << endl;
                 } else {
                     Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
-                    employees.push_back(move(employee));
+                    employees.push_back(move(employee));  // move constructor 
                     cout << "Employee added " << endl;
                     employee.eat();
                     employee.sleep();
@@ -78,7 +78,7 @@ int main() {
                 string companyName;
                 cin >> companyName;
                 Manager manager(companyName);
-                managers.push_back(manager);
+                managers.push_back(manager); // copy constructor
                 cout << "Manager added" << endl;
             }
             break;
@@ -96,7 +96,7 @@ int main() {
             case 5: {
                 Manager manager = Manager("CONTI");
                 Manager copyManager = manager;
-                managers.push_back(copyManager);
+                managers.push_back(copyManager); // copy constructor
             }
             break;
 
