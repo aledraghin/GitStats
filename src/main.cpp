@@ -14,14 +14,14 @@ using namespace company;
 void displayEmployees(vector<Employee>& employee) {
 cout << "Employee List:" << endl;
     for (size_t i = 0; i < employee.size(); i++) {
-        cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getCompanyName() << endl;
+        cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getName() << endl;
     }
 }
 
 void displayManagers( vector<Manager>& manager) {
     cout << "Manager List:" << endl;
     for (size_t i = 0; i < manager.size(); i++) {
-    cout << "Manager " << i << ": " << manager[i].getCompanyName() << endl;
+    cout << "Manager " << i << ": " << manager[i].getName() << endl;
     }
 }
 
@@ -70,7 +70,7 @@ int main() {
                 if (managerIndex < 0 || managerIndex >= managers.size()) {
                     cout << "Invalid index" << endl;
                 } else {
-                    Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
+                    Employee employee(name, salary, idNumber, managers[managerIndex].getName());
                     employees.push_back(move(employee));  // move constructor 
                     cout << "Employee added " << endl;
                     employee.eat();
@@ -137,9 +137,11 @@ int main() {
                 employees.push_back(Employee("Mihai", 1000, 1, "CONTI"));
                 findEmployeeByName(employees, "Andrei");
 
-                vector<Manager> managers;
-                managers.push_back(Manager("CONTI"));
-                findEmployeeByName(managers, "CONTI");
+                vector<Manager> managers2;
+                managers2.push_back(Manager("CONTI"));
+                managers2.push_back(Manager("Hella"));
+                findEmployeeByName(managers2, "CONTI");
+
             }
             break;
 

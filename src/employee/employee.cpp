@@ -12,7 +12,7 @@ namespace company{
         this->name = name;
         this->salary = salary;
         this->idNumber = idNumber;
-        this->manager = new Manager(companyName);
+        this->manager = nullptr;
     }
 
     // move constructor
@@ -21,7 +21,7 @@ namespace company{
         this->name = employee.name;
         this->salary = employee.salary;  
         this->idNumber = employee.idNumber; 
-        this->manager = employee.manager;
+        this->manager = std::move(employee.manager);
 
         employee.manager = nullptr;
     }
@@ -35,7 +35,7 @@ namespace company{
         this->idNumber = employee.idNumber; 
 
         if (employee.manager) {
-            manager = new Manager(*employee.manager);
+            manager = make_unique<Manager>(*employee.manager);
         } else {
             manager = nullptr;
         }
@@ -55,13 +55,12 @@ namespace company{
 
         // daca managerul curent nu e null -> il stergem
         if (manager) {
-            delete manager;
             manager = nullptr;
         }
 
         // facem deep copy pentru manager
         if (other.manager) {
-            manager = new Manager(*other.manager);
+            manager = make_unique<Manager>(*other.manager); // deep copy
         }
 
         // returneaza obiectul curent
@@ -70,7 +69,7 @@ namespace company{
 
     // dealocare de memorie din heap -> Destructor
     Employee::~Employee(){
-        delete manager;
+         manager=nullptr;
     }
 
     // getter
@@ -87,7 +86,7 @@ namespace company{
     }
 
     Manager* Employee::getManager(){
-        return this->manager;
+        return this->manager.get();
     }
 
     // setter
@@ -102,7 +101,7 @@ namespace company{
     }
 
     void Employee::setManager(Manager *newManager) {
-        this->manager = newManager;
+        this->manager = make_unique<Manager>(*newManager);
     }
 
     // override
