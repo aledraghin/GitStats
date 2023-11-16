@@ -3,13 +3,12 @@
 #include <vector>
 
 namespace company{
-    template <typename T>
-    T findEmployeeByName(const std::vector<T>& employees, const std::string& name) {
-        for (const T& employee : employees) {
-            if (employee.getName() == name) {
-                return employee;
-            }
-        }
-        throw std::runtime_error("User not found!");
-    }
+   template <typename T>    
+   T findEmployeeByName (std::vector<T> employees, std::string name){
+       for(int i = 0; i < employees.size(); i++){
+           if(employees[i].getName() == name){
+               return employees[i];
+           }
+       }
+   }
 }

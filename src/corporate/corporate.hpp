@@ -39,7 +39,7 @@ namespace company{
 
             void printEmployees(){
                 for(int i = 0; i < this->employees.size(); i++){
-                    std::cout << this->employees[i].getCompanyName() << std::endl;
+                    std::cout << this->employees[i].getName() << std::endl;
                 }
             }
     };

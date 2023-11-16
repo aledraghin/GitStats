@@ -27,7 +27,7 @@ namespace company{
         std::cout << "Janitor is repeating!/n";
     }
 
-    std::string Janitor::getCompanyName(){
+    std::string Janitor::getName(){
         return this->companyName;
     }
 }

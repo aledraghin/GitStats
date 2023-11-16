@@ -1,3 +1,6 @@
+#ifndef JANITOR_HPP
+#define JANITOR_HPP
+
 #include "human-being.hpp"
 #include <string>
 
@@ -12,6 +15,8 @@ namespace company{
             void sleep() override;
             void work() override;
             void repeat() override;
-            std::string getCompanyName();
+            std::string getName();
     };
 }
+
+#endif

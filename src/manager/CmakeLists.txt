@@ -1,5 +1,9 @@
 # creezi o librarie care contine manager.cpp si manager.hpp
 add_library(ManagerLibrary manager.cpp manager.hpp)
 
+
+target_link_libraries(ManagerLibrary PUBLIC JanitorLibrary)
+target_include_directories(ManagerLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../janitor)
+
 # ii specifici sa includa si directorul sursa ca sa nu mai pui src/manager.hpp cand faci import
 target_include_directories(ManagerLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
