@@ -1,6 +1,8 @@
 #include <string>
 #include "manager.hpp"
 #include "human-being.hpp"
+#include <memory>
+
 using namespace std;
 
 namespace company {
@@ -9,13 +11,13 @@ namespace company {
             string name;
             double salary;
             long idNumber;
-            Manager *manager;
+            unique_ptr<Manager> manager;
         public:
             Employee(string name, double salary, long idNumber, string comanyName);
-            Employee(Employee &&employee);
-            ~Employee();
-            Employee(const Employee &employee);
-            Employee& operator=(const Employee& other);
+            Employee(Employee &&employee); // move constructor
+            ~Employee(); // destructor
+            Employee(const Employee &employee); 
+            Employee& operator=(const Employee& other); // assignment operator overloading
 
             string getName();
             double getSalary();

@@ -8,15 +8,15 @@
 using namespace std;
 
 namespace company {
-    class ManagerEmployee : public Employee {
+    class ManagerEmployee : public Employee { // mostenire 
         private:
-            int numberOfSubordinates;
+            int numberOfSubordinates; 
 
         public:
-            ManagerEmployee(string name, double salary, long idNumber, string companyName, int subordinates);
-            ~ManagerEmployee();
+            ManagerEmployee(string name, double salary, long idNumber, string companyName, int subordinates); // constructor
+            ~ManagerEmployee(); // destructor
 
-            int getNumberOfSubordinates();
+            int getNumberOfSubordinates(); // getter
         };
 }
 

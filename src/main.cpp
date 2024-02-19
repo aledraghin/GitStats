@@ -2,7 +2,11 @@
 #include <vector>
 #include <string>
 #include "employee.hpp" 
-#include "manager.hpp" 
+#include "manager.hpp"
+#include "janitor.hpp" 
+#include <list>
+#include "corporate.hpp"
+#include "utility.hpp"
 
 using namespace std;
 using namespace company;
@@ -10,14 +14,14 @@ using namespace company;
 void displayEmployees(vector<Employee>& employee) {
 cout << "Employee List:" << endl;
     for (size_t i = 0; i < employee.size(); i++) {
-        cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getCompanyName() << endl;
+        cout << "Employee " << i << ": " << employee[i].getName() << ", Manager: " << employee[i].getManager()->getName() << endl;
     }
 }
 
 void displayManagers( vector<Manager>& manager) {
     cout << "Manager List:" << endl;
     for (size_t i = 0; i < manager.size(); i++) {
-    cout << "Manager " << i << ": " << manager[i].getCompanyName() << endl;
+    cout << "Manager " << i << ": " << manager[i].getName() << endl;
     }
 }
 
@@ -26,6 +30,7 @@ int main() {
     int option;
     vector<Employee> employees;
     vector<Manager> managers;
+    list<Janitor> janitors;
 
     do {
         cout << "-------------------------------------------" << endl;
@@ -35,6 +40,9 @@ int main() {
         cout << "3. Display all Employees" << endl;
         cout << "4. Display all Managers" << endl;
         cout << "5. Copy an Employee" << endl;
+        cout << "6. Example of Janitor class" << endl;
+        cout << "7. Example of Corporate class" << endl;
+        cout << "8. Example of Utility class" << endl;
         cout << "0. Exit" << endl;
         cout << "-------------------------------------------" << endl;
         cin >> option;
@@ -62,8 +70,8 @@ int main() {
                 if (managerIndex < 0 || managerIndex >= managers.size()) {
                     cout << "Invalid index" << endl;
                 } else {
-                    Employee employee(name, salary, idNumber, managers[managerIndex].getCompanyName());
-                    employees.push_back(move(employee));
+                    Employee employee(name, salary, idNumber, managers[managerIndex].getName());
+                    employees.push_back(move(employee));  // move constructor 
                     cout << "Employee added " << endl;
                     employee.eat();
                     employee.sleep();
@@ -78,7 +86,7 @@ int main() {
                 string companyName;
                 cin >> companyName;
                 Manager manager(companyName);
-                managers.push_back(manager);
+                managers.push_back(manager); // copy constructor
                 cout << "Manager added" << endl;
             }
             break;
@@ -96,7 +104,44 @@ int main() {
             case 5: {
                 Manager manager = Manager("CONTI");
                 Manager copyManager = manager;
-                managers.push_back(copyManager);
+                managers.push_back(copyManager); // copy constructor
+            }
+            break;
+
+            case 6: {
+                Janitor janitor = Janitor("CONTI");
+                janitor.eat();
+                janitor.sleep();
+                janitor.work();
+                janitor.repeat();
+                // utilizam o lista pentru ca facem inserarea in fata si are complexitate O(1)
+                janitors.push_front(janitor);
+            }
+
+            case 7: {
+                Corporate<Manager> corporate("CONTI");
+                Manager manager = Manager("CONTI");
+                corporate.addEmployee(manager);
+                corporate.printEmployees();
+
+                Corporate<Janitor> corporate2("CONTI");
+                Janitor janitor = Janitor("CONTI");
+                corporate2.addEmployee(janitor);
+                corporate2.printEmployees();
+            }
+            break;
+
+            case 8:{
+                vector<Employee> employees;
+                employees.push_back(Employee("Andrei", 1000, 1, "CONTI"));
+                employees.push_back(Employee("Mihai", 1000, 1, "CONTI"));
+                findEmployeeByName(employees, "Andrei");
+
+                vector<Manager> managers2;
+                managers2.push_back(Manager("CONTI"));
+                managers2.push_back(Manager("Hella"));
+                findEmployeeByName(managers2, "CONTI");
+
             }
             break;
 
